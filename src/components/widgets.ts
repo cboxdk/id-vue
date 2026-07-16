@@ -121,6 +121,8 @@ export const CboxUserButton = defineComponent({
   name: 'CboxUserButton',
   props: {
     manageLabel: { type: String, default: 'Manage account' },
+    switchLabel: { type: String, default: 'Switch account' },
+    addLabel: { type: String, default: 'Add another account' },
     signOutLabel: { type: String, default: 'Sign out' },
   },
   setup(props) {
@@ -166,6 +168,15 @@ export const CboxUserButton = defineComponent({
             h('hr', { class: 'cbox-id-menu__sep' }),
             urls.profile
               ? h('a', { class: 'cbox-id-menu__item', role: 'menuitem', href: urls.profile }, props.manageLabel)
+              : null,
+            urls.switchAccount
+              ? h('a', { class: 'cbox-id-menu__item', role: 'menuitem', href: urls.switchAccount }, props.switchLabel)
+              : null,
+            urls.addAccount
+              ? h('a', { class: 'cbox-id-menu__item', role: 'menuitem', href: urls.addAccount }, props.addLabel)
+              : null,
+            (urls.switchAccount || urls.addAccount) && urls.signOut
+              ? h('hr', { class: 'cbox-id-menu__sep' })
               : null,
             urls.signOut
               ? h('a', { class: 'cbox-id-menu__item', role: 'menuitem', href: urls.signOut }, props.signOutLabel)
