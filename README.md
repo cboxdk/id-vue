@@ -52,7 +52,20 @@ Escape.
 | `<CboxUserProfileCard>` | Avatar, name, email, manage-account link. |
 | `<CboxOrganizationBadge>` | The user's current organization. |
 
-Composables: `useCboxUser()` and `useCboxId()` (both reactive).
+Composables: `useCboxUser()` (a `ComputedRef<CboxWidgetUser | null>`) and
+`useCboxId()` (a `ComputedRef` of the full context — user, urls, appearance). Both
+throw when used outside a `<CboxIdProvider>`.
+
+Every component's props type is exported (`CboxIdProviderProps`,
+`CboxSignInButtonProps`, `CboxSignOutButtonProps`, `CboxUserButtonProps`,
+`CboxOrganizationBadgeProps`), alongside `CboxWidgetUser`, `CboxWidgetUrls` and
+`CboxWidgetAppearance`. Buttons take their label from a prop **or** a default slot —
+`<CboxSignInButton>Log ind</CboxSignInButton>`.
+
+Using SSR without the provider component (e.g. a custom integration)? `ensureStyles()`
+injects the stylesheet client-side, and `STYLE_ID` / `CSS` are exported if you'd
+rather render the `<style>` yourself. `@cboxdk/id-nuxt` uses these to wire the widgets
+app-wide for you.
 
 ## Theming
 

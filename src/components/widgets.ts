@@ -8,6 +8,32 @@ function avatar(user: CboxWidgetUser): VNode {
   ]);
 }
 
+/** Props for {@link CboxSignInButton}. Pass a default slot to override the label. */
+export interface CboxSignInButtonProps {
+  /** Button label; ignored when a default slot is provided. Defaults to `"Sign in"`. */
+  label?: string;
+}
+
+/** Props for {@link CboxSignOutButton}. Pass a default slot to override the label. */
+export interface CboxSignOutButtonProps {
+  /** Button label; ignored when a default slot is provided. Defaults to `"Sign out"`. */
+  label?: string;
+}
+
+/** Props for {@link CboxOrganizationBadge}. */
+export interface CboxOrganizationBadgeProps {
+  /** Override the displayed label; defaults to the user's `organizationId`. */
+  label?: string;
+}
+
+/** Props for {@link CboxUserButton}. */
+export interface CboxUserButtonProps {
+  /** Label for the profile-management item. Defaults to `"Manage account"`. */
+  manageLabel?: string;
+  /** Label for the sign-out item. Defaults to `"Sign out"`. */
+  signOutLabel?: string;
+}
+
 /** A primary button linking to your app's sign-in route. */
 export const CboxSignInButton = defineComponent({
   name: 'CboxSignInButton',
