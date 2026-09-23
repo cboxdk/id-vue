@@ -44,7 +44,12 @@ export function appearanceStyle(appearance: CboxWidgetAppearance): CSSProperties
 
 /** Initials for the avatar fallback, from name or email. */
 export function initials(user: CboxWidgetUser): string {
-  const source = user.name?.trim() || user.email?.trim() || '';
+  return initialsOf(user.name?.trim() || user.email?.trim() || '');
+}
+
+/** Up to two initials from any display string (a person or an organization). */
+export function initialsOf(value: string): string {
+  const source = value.trim();
   if (source === '') {
     return '?';
   }

@@ -1,5 +1,6 @@
 import { defineComponent, h, onBeforeUnmount, onMounted, ref, useId, type VNode } from 'vue';
 import { appearanceStyle, initials, useCboxId } from '../context.js';
+import { useOrganization } from '../organization.js';
 import type { CboxWidgetUser } from '../types.js';
 
 function avatar(user: CboxWidgetUser): VNode {
@@ -22,7 +23,11 @@ export interface CboxSignOutButtonProps {
 
 /** Props for {@link CboxOrganizationBadge}. */
 export interface CboxOrganizationBadgeProps {
-  /** Override the displayed label; defaults to the user's `organizationId`. */
+  /**
+   * Override the displayed label. Defaults to the active organization's name (from the
+   * `organizations` list or the token's `org_name`), and to its id only when neither
+   * carries a name.
+   */
   label?: string;
 }
 
@@ -74,8 +79,11 @@ export const CboxOrganizationBadge = defineComponent({
   props: { label: { type: String, default: '' } },
   setup(props) {
     const cbox = useCboxId();
+    const { organization } = useOrganization();
     return () => {
-      const text = props.label || cbox.value.user?.organizationId || '';
+      // The name, not the id: `organizationId` is an opaque key nobody recognises their
+      // company by. The id is the last resort, when no name reached the widgets at all.
+      const text = props.label || organization.value?.name || '';
       if (!text) {
         return null;
       }

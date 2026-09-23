@@ -11,12 +11,20 @@ export const CSS = `
   --cbox-id-accent-fg: #ffffff;
   --cbox-id-radius: 8px;
   --cbox-id-font: inherit;
-  --cbox-id-border: color-mix(in srgb, currentColor 14%, transparent);
+  /* 14% of anything is ~1.2:1 against the surface — a control boundary essentially
+     invisible. SC 1.4.11 asks for 3:1 for the edge that identifies a control (a button,
+     the organization switcher), and 40% of the text colour clears it in both themes. */
+  --cbox-id-border: color-mix(in srgb, currentColor 40%, transparent);
   --cbox-id-muted: color-mix(in srgb, currentColor 60%, transparent);
   --cbox-id-surface: Canvas;
   --cbox-id-surface-hover: color-mix(in srgb, currentColor 8%, transparent);
+  --cbox-id-warning: #b54708;
   font-family: var(--cbox-id-font);
   display: inline-block;
+}
+.cbox-id-root--block { display: block; }
+@media (prefers-color-scheme: dark) {
+  .cbox-id-root { --cbox-id-warning: #fdb022; }
 }
 .cbox-id-btn {
   font: inherit;
@@ -119,6 +127,74 @@ export const CSS = `
   font-size: 0.82em;
 }
 .cbox-id-anchor { position: relative; display: inline-block; }
+/* The organization switcher usually sits at the START of a header, where a menu aligned to
+   the trigger's right edge opens off the left of the page. It opens from its left edge. */
+.cbox-id-anchor--start .cbox-id-menu { left: 0; right: auto; }
+.cbox-id-orgswitch {
+  font: inherit;
+  /* Also drawn as a link (to the hosted picker), which would otherwise be underlined. */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  max-width: 15em;
+  padding: 0.4em 0.6em;
+  border-radius: var(--cbox-id-radius);
+  border: 1px solid var(--cbox-id-border);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.cbox-id-orgswitch:hover { background: var(--cbox-id-surface-hover); }
+.cbox-id-orgswitch:focus-visible { outline: 2px solid var(--cbox-id-accent); outline-offset: 2px; }
+.cbox-id-orgswitch__name { font-weight: 600; font-size: 0.9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cbox-id-orgswitch__chev { margin-left: 0.1em; opacity: 0.6; flex: none; }
+.cbox-id-avatar--org {
+  width: 1.7em;
+  height: 1.7em;
+  font-size: 0.72em;
+  border-radius: calc(var(--cbox-id-radius) - 2px);
+}
+.cbox-id-avatar--ghost {
+  background: transparent;
+  color: var(--cbox-id-muted);
+  border: 1px dashed var(--cbox-id-border);
+  font-weight: 400;
+}
+.cbox-id-menu__grouplabel {
+  padding: 0.5em 0.6em 0.3em;
+  font-size: 0.72em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cbox-id-muted);
+}
+.cbox-id-menu__label { display: flex; flex-direction: column; min-width: 0; }
+.cbox-id-menu__label .cbox-id-menu__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cbox-id-menu__itemsub { color: var(--cbox-id-muted); font-size: 0.78em; text-transform: capitalize; }
+.cbox-id-menu__check { margin-left: auto; color: var(--cbox-id-accent); flex: none; }
+.cbox-id-menu__item--active { background: var(--cbox-id-surface-hover); }
+
+/* A support session is the one state where the person at the keyboard is not the account
+   holder. It uses the warning tone, never the accent: the accent is the customer's brand
+   colour, and a banner in it reads as their own chrome rather than as a caution. */
+.cbox-id-support {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em 1em;
+  padding: 0.6em 0.9em;
+  border: 1px solid var(--cbox-id-warning);
+  border-radius: var(--cbox-id-radius);
+  /* A tint of the host's own background, so it reads on a light or a dark page. */
+  background: color-mix(in srgb, var(--cbox-id-warning) 14%, transparent);
+  font-size: 0.9em;
+}
+.cbox-id-support__text { flex: 1 1 20em; }
+.cbox-id-support__end { color: inherit; font-weight: 600; white-space: nowrap; }
+.cbox-id-support__end:focus-visible { outline: 2px solid var(--cbox-id-warning); outline-offset: 2px; }
 `;
 
 /** Inject the widget stylesheet into <head> once (client-side, idempotent). */
