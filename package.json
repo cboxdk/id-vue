@@ -1,6 +1,6 @@
 {
   "name": "@cboxdk/id-vue",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Embeddable Vue 3 widgets for Cbox ID — a drop-in user button, sign-in / sign-out buttons, profile card and organization badge, wired to your Cbox ID hosted flows. Themeable, accessible, zero-config.",
   "type": "module",
   "license": "MIT",
@@ -44,7 +44,13 @@
     "check": "npm run typecheck && npm run test && npm run build"
   },
   "peerDependencies": {
+    "@cboxdk/id-js": "^0.17.0",
     "vue": "^3.4.0"
+  },
+  "peerDependenciesMeta": {
+    "@cboxdk/id-js": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
