@@ -3,7 +3,7 @@
 All notable changes to `@cboxdk/id-vue` are recorded here. Earlier releases are described
 in their [GitHub releases](https://github.com/cboxdk/id-vue/releases).
 
-## Unreleased
+## [0.3.0] - 2026-09-24
 
 Organization selection and support sessions, at parity with `@cboxdk/id-react`. **Requires
 `@cboxdk/id-js` 0.17 or later** on your server, which sends the `organization` parameter and
