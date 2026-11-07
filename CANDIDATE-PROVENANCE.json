@@ -1,0 +1,9 @@
+{
+  "upstream_head": "a410ae91a0aff0acaa2bb261c61b74eea484fcb2",
+  "upstream_branch": "main",
+  "target_version": "0.3.1",
+  "status": "unpublished candidate based on actual upstream history",
+  "source_manifest": "evidence/id-vue-final-source-hashes.json",
+  "publication_parent": "88eae5613b966601328ec04ed97704787c099c2a",
+  "restored_public_files": []
+}

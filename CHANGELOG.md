@@ -3,6 +3,17 @@
 All notable changes to `@cboxdk/id-vue` are recorded here. Earlier releases are described
 in their [GitHub releases](https://github.com/cboxdk/id-vue/releases).
 
+
+## [0.3.1] — prepared candidate, not published
+
+### Changes
+
+Support the current ID JavaScript authorization SDK in the peer range. Existing organization UI runtime is unchanged from 0.3.0.
+
+### Upgrade
+
+Install a compatible @cboxdk/id-js version. The candidate peer range retains ^0.17, ^0.18 and ^0.19 and adds ^0.20; authorization remains server-enforced.
+
 ## [0.3.0] - 2026-09-24
 
 Organization selection and support sessions, at parity with `@cboxdk/id-react`. **Requires
