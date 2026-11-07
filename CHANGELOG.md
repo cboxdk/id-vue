@@ -4,7 +4,7 @@ All notable changes to `@cboxdk/id-vue` are recorded here. Earlier releases are 
 in their [GitHub releases](https://github.com/cboxdk/id-vue/releases).
 
 
-## [0.3.1] — prepared candidate, not published
+## [0.3.1] - 2026-11-07
 
 ### Changes
 
